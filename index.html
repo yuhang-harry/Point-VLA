@@ -102,7 +102,7 @@
     <div class="content has-text-centered">
       <img src="./static/images/fig1_teaser-1.jpg" alt="Point-VLA Teaser" style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Point-VLA</span> resolves language limitations in robot manipulation through visual grounding with bounding boxes, achieving 92.5% success rate (3x improvement over text-only VLA).
+        <span class="dnerf">Point-VLA</span> resolves language limitations in robot manipulation through <span style="color: #e74c3c; font-weight: bold;">visual grounding with bounding boxes</span>, achieving <span style="color: #2980b9; font-weight: bold;">92.5% success rate</span> (3x improvement over text-only VLA).
       </h2>
     </div>
   </div>
@@ -163,6 +163,26 @@
   </div>
 </section>
 
+<!-- Motivation -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Current VLA models rely solely on text to specify manipulation targets. However, language is inherently ambiguous for spatial referring — describing "the red cup to the left of the blue bottle, behind the plate" is verbose, error-prone, and often still insufficient in cluttered scenes. Even when a VLM can localize the correct object with 60–70% accuracy, the downstream text-only VLA achieves only ~25% manipulation success, revealing a fundamental <strong>language-action alignment gap</strong>.
+          </p>
+          <p>
+            Humans solve this effortlessly: when words fall short, we simply <strong>point</strong>. Point-VLA adopts the same intuition — augmenting language instructions with a bounding box drawn on the camera image to provide pixel-level spatial grounding. For example, instead of a complex sentence like <em>"Pick up the bottle to the right of the leftmost bottles, in the middle of the desk"</em>, Point-VLA only needs <em>"Pick up"</em> plus a bounding box on the target. High-level intent stays in language; precise spatial reference moves to vision.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Method -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -172,7 +192,7 @@
 
         <div class="content has-text-justified">
           <p>
-            Point-VLA introduces <strong>visually grounded instructions</strong> by overlaying bounding boxes on camera images to provide explicit pixel-level referents. This enables precise visual grounding alongside standard multi-view observations.
+            Point-VLA introduces <strong>visually grounded instructions</strong> by overlaying bounding boxes on camera images to provide explicit pixel-level referents. This enables precise visual grounding alongside standard multi-view observations. The model is co-trained on both textual and visually grounded instructions, yielding a single unified policy that works in either mode.
           </p>
         </div>
 
@@ -185,7 +205,7 @@
 
         <div class="content has-text-justified">
           <p>
-            We co-train the model on both textual and visual grounded instructions to obtain a single unified policy that can operate in either pure-text or visually grounded modes. Beyond the core architecture, we adopt an automatic annotation strategy by utilizing Multi-modal Large Language Models (MLLMs) to propose target bounding boxes from demonstration videos.
+            We further adopt an automatic annotation strategy using Multi-modal Large Language Models (MLLMs) to propose target bounding boxes from demonstration videos, eliminating the need for manual labeling. Two data augmentation strategies — random translation and localized CutMix — are applied to improve generalization: random translation encourages the model to focus on relative position rather than absolute coordinates, while localized CutMix prevents overfitting to specific object appearances.
           </p>
         </div>
 
@@ -210,11 +230,16 @@
         <div class="content has-text-centered">
           <img src="./static/images/fig5_task_overview-1.jpg" alt="Task Overview" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
-            <strong>Evaluation Tasks:</strong> Six real-world manipulation tasks including irregular object picking, OOD object picking, cluttered scenario picking, egg-slot picking, plain placement, and egg-slot placement.
+            <strong>Evaluation Tasks:</strong> Six real-world manipulation tasks spanning diverse challenges — irregular object picking, OOD object picking, cluttered scenario picking, egg-slot picking, plain placement, and egg-slot placement.
           </p>
         </div>
 
         <h3 class="title is-4">Performance Comparison</h3>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate Point-VLA against two baselines: <strong>Text VLA</strong> (text-only instructions) and <strong>Interleave-VLA</strong> (interleaved image-text instructions). Across all six tasks, Point-VLA achieves <strong>92.5% average success rate</strong>, outperforming Text VLA by +60.1 points and Interleave-VLA by +52.5 points. The improvement is especially pronounced in challenging scenarios: in cluttered picking, Point-VLA reaches 94.3% vs. 43.3% for Text VLA; in egg-slot picking, it achieves 86.7% vs. only 10.0%.
+          </p>
+        </div>
         <div class="content">
           <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
@@ -265,22 +290,29 @@
         </div>
 
         <h3 class="title is-4">VLM Localization vs VLA Execution Gap</h3>
+        <div class="content has-text-justified">
+          <p>
+            A key finding is the significant gap between VLM localization accuracy and VLA execution success. Even when VLMs correctly localize targets 60–70% of the time, text-only VLAs convert this into only ~25% manipulation success. This gap arises because translating spatial understanding into precise motor actions through language alone loses critical information. Point-VLA bridges this gap by directly encoding spatial targets as visual cues, bypassing the lossy language bottleneck.
+          </p>
+        </div>
         <div class="content has-text-centered">
           <img src="./static/images/fig2_vlm2vla_gap-1.jpg" alt="VLM to VLA Gap" style="max-width: 100%; height: auto;"/>
-          <p class="has-text-centered">
-            Even when VLMs can localize targets with 60-70% accuracy, text-only VLAs achieve only 25% manipulation success, revealing a fundamental language-action alignment gap that Point-VLA addresses.
-          </p>
         </div>
 
         <h3 class="title is-4">Text Compatibility & Data Scaling</h3>
-        <div class="columns">
+        <div class="content has-text-justified">
+          <p>
+            Point-VLA maintains full compatibility with text-only instructions — co-training on both modalities does not degrade text-mode performance. Additionally, Point-VLA exhibits strong data scaling behavior: performance continues to improve as more visually grounded training data is added, suggesting the approach can benefit from larger-scale data collection.
+          </p>
+        </div>
+        <div class="columns" style="align-items: center;">
           <div class="column">
-            <img src="./static/images/fig6_text_compatible-1.jpg" alt="Text Compatibility" style="max-width: 100%; height: auto;"/>
-            <p class="has-text-centered">Point-VLA maintains compatibility with text-only instructions.</p>
+            <img src="./static/images/fig6_text_compatible-1.jpg" alt="Text Compatibility" style="width: 100%; height: 250px; object-fit: contain;"/>
+            <p class="has-text-centered">Text-mode performance is preserved after co-training.</p>
           </div>
           <div class="column">
-            <img src="./static/images/fig7_scaling-1.jpg" alt="Data Scaling" style="max-width: 100%; height: auto;"/>
-            <p class="has-text-centered">Point-VLA continues to benefit from increased training data.</p>
+            <img src="./static/images/fig7_scaling-1.jpg" alt="Data Scaling" style="width: 100%; height: 250px; object-fit: contain;"/>
+            <p class="has-text-centered">Performance scales with more visually grounded data.</p>
           </div>
         </div>
       </div>
