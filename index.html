@@ -12,8 +12,6 @@
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -21,8 +19,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
 <body>
@@ -74,7 +70,6 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
                 <a href="https://arxiv.org/pdf/2512.18933"
                    class="external-link button is-normal is-rounded is-dark">
@@ -101,12 +96,11 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- Teaser Image -->
+<section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-      </video>
+    <div class="content has-text-centered">
+      <img src="./static/images/fig1_teaser-1.jpg" alt="Point-VLA Teaser" style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
         <span class="dnerf">Point-VLA</span> resolves language limitations in robot manipulation through visual grounding with bounding boxes, achieving 92.5% success rate (3x improvement over text-only VLA).
       </h2>
@@ -114,38 +108,42 @@
   </div>
 </section>
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-cluttered">
-          <video poster="" id="cluttered" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/cluttered_picking.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-ood">
-          <video poster="" id="ood" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/OOD_object_picking.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-precise">
-          <video poster="" id="precise" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/precise_picking.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-container">
-          <video poster="" id="container" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/container_placement.mp4" type="video/mp4">
-          </video>
-        </div>
+<!-- Demo Videos: 2x2 Grid -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Demo Videos</h2>
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <p class="has-text-centered"><strong>Cluttered Picking</strong></p>
+        <video autoplay controls muted loop playsinline style="width: 100%;">
+          <source src="./static/videos/cluttered_picking.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-one-quarter">
+        <p class="has-text-centered"><strong>OOD Object Picking</strong></p>
+        <video autoplay controls muted loop playsinline style="width: 100%;">
+          <source src="./static/videos/OOD_object_picking.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-one-quarter">
+        <p class="has-text-centered"><strong>Precise Picking</strong></p>
+        <video autoplay controls muted loop playsinline style="width: 100%;">
+          <source src="./static/videos/precise_picking.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-one-quarter">
+        <p class="has-text-centered"><strong>Container Placement</strong></p>
+        <video autoplay controls muted loop playsinline style="width: 100%;">
+          <source src="./static/videos/container_placement.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -162,10 +160,10 @@
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
   </div>
 </section>
 
+<!-- Method -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -179,7 +177,7 @@
         </div>
 
         <div class="content has-text-centered">
-          <img src="./static/images/fig3_inference-1.png" alt="Point-VLA Inference Pipeline" style="max-width: 100%; height: auto;"/>
+          <img src="./static/images/fig3_inference-1.jpg" alt="Point-VLA Inference Pipeline" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
             <strong>Inference Pipeline:</strong> Users can provide visual grounding through GUI or gestures, combined with simple text commands.
           </p>
@@ -192,7 +190,7 @@
         </div>
 
         <div class="content has-text-centered">
-          <img src="./static/images/fig4_training-1.png" alt="Point-VLA Training Pipeline" style="max-width: 100%; height: auto;"/>
+          <img src="./static/images/fig4_training-1.jpg" alt="Point-VLA Training Pipeline" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
             <strong>Training Pipeline:</strong> Automatic data annotation with MLLM, combined with data augmentation strategies (random translation and localized CutMix).
           </p>
@@ -202,6 +200,7 @@
   </div>
 </section>
 
+<!-- Results -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -209,20 +208,7 @@
         <h2 class="title is-3">Results</h2>
 
         <div class="content has-text-centered">
-          <img src="./static/images/fig1_teaser-1.png" alt="Point-VLA Overview" style="max-width: 100%; height: auto;"/>
-          <p class="has-text-centered">
-            Point-VLA resolves language limitations in precise target referring across diverse manipulation scenarios.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <p>
-            Across six referent-sensitive manipulation tasks, Point-VLA achieves <strong>92.5% average success</strong>, with +60.1 and +52.5 point improvements over text-only and Interleave-VLA baselines respectively.
-          </p>
-        </div>
-
-        <div class="content has-text-centered">
-          <img src="./static/images/fig5_task_overview-1.png" alt="Task Overview" style="max-width: 100%; height: auto;"/>
+          <img src="./static/images/fig5_task_overview-1.jpg" alt="Task Overview" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
             <strong>Evaluation Tasks:</strong> Six real-world manipulation tasks including irregular object picking, OOD object picking, cluttered scenario picking, egg-slot picking, plain placement, and egg-slot placement.
           </p>
@@ -278,21 +264,22 @@
           </table>
         </div>
 
+        <h3 class="title is-4">VLM Localization vs VLA Execution Gap</h3>
         <div class="content has-text-centered">
-          <img src="./static/images/fig2_vlm2vla_gap-1.png" alt="VLM to VLA Gap" style="max-width: 100%; height: auto;"/>
+          <img src="./static/images/fig2_vlm2vla_gap-1.jpg" alt="VLM to VLA Gap" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
-            <strong>VLM Localization vs VLA Execution Gap:</strong> Even when VLMs can localize targets with 60-70% accuracy, text-only VLAs achieve only 25% manipulation success, revealing a fundamental language-action alignment gap that Point-VLA addresses.
+            Even when VLMs can localize targets with 60-70% accuracy, text-only VLAs achieve only 25% manipulation success, revealing a fundamental language-action alignment gap that Point-VLA addresses.
           </p>
         </div>
 
         <h3 class="title is-4">Text Compatibility & Data Scaling</h3>
         <div class="columns">
           <div class="column">
-            <img src="./static/images/fig6_text_compatible-1.png" alt="Text Compatibility" style="max-width: 100%; height: auto;"/>
+            <img src="./static/images/fig6_text_compatible-1.jpg" alt="Text Compatibility" style="max-width: 100%; height: auto;"/>
             <p class="has-text-centered">Point-VLA maintains compatibility with text-only instructions.</p>
           </div>
           <div class="column">
-            <img src="./static/images/fig7_scaling-1.png" alt="Data Scaling" style="max-width: 100%; height: auto;"/>
+            <img src="./static/images/fig7_scaling-1.jpg" alt="Data Scaling" style="max-width: 100%; height: auto;"/>
             <p class="has-text-centered">Point-VLA continues to benefit from increased training data.</p>
           </div>
         </div>
