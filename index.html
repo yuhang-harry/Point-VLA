@@ -149,13 +149,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Vision-Language-Action (VLA) models align vision and language with embodied control, but their object referring ability remains limited when relying solely on text prompts, especially in cluttered or out-of-distribution (OOD) scenes.
+            Vision-Language-Action (VLA) models align vision and language with embodied control, but their <span style="color: #e74c3c; font-weight: bold;">object referring ability remains limited</span> when relying solely on text prompts, especially in <strong>cluttered or out-of-distribution (OOD)</strong> scenes.
           </p>
           <p>
-            In this study, we introduce <strong>Point-VLA</strong>, a plug-and-play policy that augments language instructions with explicit visual cues (e.g., bounding boxes) to resolve referential ambiguity and enable precise, object-level grounding. To efficiently scale visually grounded datasets, we further develop an automatic data annotation pipeline requiring minimal human effort.
+            In this study, we introduce <span style="color: #2980b9; font-weight: bold;">Point-VLA</span>, a plug-and-play policy that augments language instructions with <span style="color: #27ae60; font-weight: bold;">explicit visual cues (bounding boxes)</span> to resolve referential ambiguity and enable precise, object-level grounding. To efficiently scale visually grounded datasets, we further develop an <strong>automatic data annotation pipeline</strong> requiring minimal human effort.
           </p>
           <p>
-            We evaluate Point-VLA on diverse real-world referring tasks and observe consistently stronger performance than text-only instruction VLAs, particularly in cluttered or unseen-object scenarios, with robust generalization. These results demonstrate that Point-VLA effectively resolves object referring ambiguity through pixel-level visual grounding, achieving more generalizable embodied control.
+            We evaluate Point-VLA on diverse real-world referring tasks and observe consistently stronger performance than text-only instruction VLAs, particularly in cluttered or unseen-object scenarios, with robust generalization. These results demonstrate that Point-VLA effectively resolves object referring ambiguity through <span style="color: #27ae60; font-weight: bold;">pixel-level visual grounding</span>, achieving more generalizable embodied control.
           </p>
         </div>
       </div>
@@ -207,23 +207,23 @@
         <h4>Visually Grounded Instructions</h4>
         <div class="content has-text-justified">
           <p>
-            Point-VLA overlays a <span style="color: #e74c3c;"><strong>bounding box</strong></span> on the camera image to provide pixel-level spatial grounding. The model is co-trained on both textual and visually grounded instructions, yielding a <strong>single unified policy</strong> that works in either mode.
+            Point-VLA overlays a <span style="color: #e74c3c; font-weight: bold;">bounding box</span> on the camera image to provide <span style="color: #27ae60; font-weight: bold;">pixel-level spatial grounding</span>. The model is co-trained on both textual and visually grounded instructions, yielding a <span style="color: #2980b9; font-weight: bold;">single unified policy</span> that works in either mode.
           </p>
         </div>
 
         <div class="content has-text-centered">
           <img src="./static/images/fig3_inference-1.jpg" alt="Point-VLA Inference Pipeline" style="max-width: 100%; height: auto;"/>
           <p class="has-text-centered">
-            <strong>Inference Pipeline:</strong> Users can provide visual grounding through GUI or gestures, combined with simple text commands.
+            <strong>Inference Pipeline:</strong> Users can provide visual grounding through <span style="color: #2980b9;">GUI or gestures</span>, combined with simple text commands.
           </p>
         </div>
 
         <h4>Automatic Data Annotation Pipeline</h4>
         <div class="content has-text-justified">
-          <p>We use <strong>MLLMs</strong> to automatically generate bounding box annotations from demonstration videos — no manual labeling needed. Two augmentation strategies improve generalization:</p>
+          <p>We use <span style="color: #2980b9; font-weight: bold;">MLLMs</span> to automatically generate bounding box annotations from demonstration videos — <span style="color: #27ae60; font-weight: bold;">no manual labeling needed</span>. Two augmentation strategies improve generalization:</p>
           <ul>
-            <li><strong>Random Translation</strong> — forces the model to learn <em>relative</em> position, not absolute coordinates.</li>
-            <li><strong>Localized CutMix</strong> — prevents overfitting to specific object appearances.</li>
+            <li><span style="color: #e74c3c; font-weight: bold;">Random Translation</span> — forces the model to learn <em>relative</em> position, not absolute coordinates.</li>
+            <li><span style="color: #e74c3c; font-weight: bold;">Localized CutMix</span> — prevents overfitting to specific object appearances.</li>
           </ul>
         </div>
 
