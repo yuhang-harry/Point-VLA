@@ -173,23 +173,23 @@
         <div class="content has-text-justified">
           <h4>The Problem: Language Is Not Enough</h4>
           <p>
-            Current VLA models rely <strong>solely on text</strong> to specify manipulation targets. But language is inherently ambiguous for spatial referring:
+            Current VLA models rely <span style="color: #e74c3c; font-weight: bold;">solely on text</span> to specify manipulation targets. But language is inherently ambiguous for spatial referring:
           </p>
           <ul>
             <li><span style="color: #e74c3c;"><strong>Verbose & error-prone</strong></span> — Describing <em>"the red cup to the left of the blue bottle, behind the plate"</em> is complex and often still insufficient in cluttered scenes.</li>
-            <li><span style="color: #e74c3c;"><strong>Language-action gap</strong></span> — Even when a VLM localizes the correct object with <strong>60–70%</strong> accuracy, the downstream text-only VLA achieves only <strong>~25%</strong> manipulation success.</li>
+            <li><span style="color: #e74c3c;"><strong>Language-action gap</strong></span> — Even when a VLM localizes the correct object with <strong>60–70%</strong> accuracy, the downstream text-only VLA achieves only <span style="color: #e74c3c; font-weight: bold;">~25%</span> manipulation success.</li>
           </ul>
 
           <h4>Our Insight: Point, Don't Describe</h4>
           <p>
-            Humans solve this effortlessly — when words fall short, we simply <strong>point</strong>. Point-VLA adopts the same intuition:
+            Humans solve this effortlessly — when words fall short, we simply <span style="color: #27ae60; font-weight: bold;">point</span>. Point-VLA adopts the same intuition:
           </p>
           <ul>
-            <li><span style="color: #2980b9;"><strong>Text-only</strong></span>: <em>"Pick up the bottle to the right of the leftmost bottles, in the middle of the desk"</em> — complex, ambiguous.</li>
-            <li><span style="color: #27ae60;"><strong>Point-VLA</strong></span>: <em>"Pick up"</em> + a bounding box on the target — simple, precise.</li>
+            <li><span style="color: #e74c3c;"><strong>Text-only</strong></span>: <em>"Pick up the bottle to the right of the leftmost bottles, in the middle of the desk"</em> — complex, ambiguous.</li>
+            <li><span style="color: #27ae60;"><strong>Point-VLA</strong></span>: <em>"Pick up"</em> + <span style="color: #2980b9; font-weight: bold;">a bounding box on the target</span> — simple, precise.</li>
           </ul>
           <p>
-            High-level intent stays in language; precise spatial reference moves to vision.
+            <span style="color: #2980b9; font-weight: bold;">High-level intent</span> stays in language; <span style="color: #27ae60; font-weight: bold;">precise spatial reference</span> moves to vision.
           </p>
         </div>
       </div>
