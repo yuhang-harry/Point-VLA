@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Point-VLA resolves language limitations in robot manipulation through visual grounding with bounding boxes.">
+  <meta name="keywords" content="Point-VLA, Visual Grounding, Robot Manipulation, VLA, Embodied AI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Point What You Mean: Visually Grounded Instruction Policy</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Point What You Mean: Visually Grounded Instruction Policy</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Hang Yu<sup>1,3*</sup>,</span>
+            <span class="author-block">
+              Juntu Zhao<sup>2,3*</sup>,</span>
+            <span class="author-block">
+              Yufeng Liu<sup>2,3</sup>,</span>
+            <span class="author-block">
+              Kaiyu Li<sup>3</sup>,</span>
+            <span class="author-block">
+              Cheng Ma<sup>3</sup>,</span>
+            <span class="author-block">
+              Di Zhang<sup>1</sup>,</span>
+            <span class="author-block">
+              Yingdong Hu<sup>4</sup>,</span>
+            <span class="author-block">
+              Guang Chen<sup>1</sup>,</span>
+            <span class="author-block">
+              Junyuan Xie<sup>3</sup>,</span>
+            <span class="author-block">
+              Junliang Guo<sup>3‡</sup>,</span>
+            <span class="author-block">
+              Junqiao Zhao<sup>1†</sup>,</span>
+            <span class="author-block">
+              Yang Gao<sup>3,4†</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tongji University,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Jiao Tong University,</span>
+            <span class="author-block"><sup>3</sup>Spirit AI,</span>
+            <span class="author-block"><sup>4</sup>Tsinghua University</span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 10px;">
+            <span class="author-block">*Equal Contribution. Work done during internship at Spirit AI.</span><br>
+            <span class="author-block">†Corresponding authors. ‡Project leader.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2512.18933"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2512.18933"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Point-VLA</span> resolves language limitations in robot manipulation through visual grounding with bounding boxes, achieving 92.5% success rate (3x improvement over text-only VLA).
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-cluttered">
+          <video poster="" id="cluttered" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/cluttered_picking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-ood">
+          <video poster="" id="ood" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/OOD_object_picking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-precise">
+          <video poster="" id="precise" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/precise_picking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-container">
+          <video poster="" id="container" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/container_placement.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Vision-Language-Action (VLA) models align vision and language with embodied control, but their object referring ability remains limited when relying solely on text prompts, especially in cluttered or out-of-distribution (OOD) scenes.
+          </p>
+          <p>
+            In this study, we introduce <strong>Point-VLA</strong>, a plug-and-play policy that augments language instructions with explicit visual cues (e.g., bounding boxes) to resolve referential ambiguity and enable precise, object-level grounding. To efficiently scale visually grounded datasets, we further develop an automatic data annotation pipeline requiring minimal human effort.
+          </p>
+          <p>
+            We evaluate Point-VLA on diverse real-world referring tasks and observe consistently stronger performance than text-only instruction VLAs, particularly in cluttered or unseen-object scenarios, with robust generalization. These results demonstrate that Point-VLA effectively resolves object referring ambiguity through pixel-level visual grounding, achieving more generalizable embodied control.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Point-VLA introduces <strong>visually grounded instructions</strong> by overlaying bounding boxes on camera images to provide explicit pixel-level referents. This enables precise visual grounding alongside standard multi-view observations.
+          </p>
+        </div>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/fig3_inference-1.png" alt="Point-VLA Inference Pipeline" style="max-width: 100%; height: auto;"/>
+          <p class="has-text-centered">
+            <strong>Inference Pipeline:</strong> Users can provide visual grounding through GUI or gestures, combined with simple text commands.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            We co-train the model on both textual and visual grounded instructions to obtain a single unified policy that can operate in either pure-text or visually grounded modes. Beyond the core architecture, we adopt an automatic annotation strategy by utilizing Multi-modal Large Language Models (MLLMs) to propose target bounding boxes from demonstration videos.
+          </p>
+        </div>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/fig4_training-1.png" alt="Point-VLA Training Pipeline" style="max-width: 100%; height: auto;"/>
+          <p class="has-text-centered">
+            <strong>Training Pipeline:</strong> Automatic data annotation with MLLM, combined with data augmentation strategies (random translation and localized CutMix).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/fig1_teaser-1.png" alt="Point-VLA Overview" style="max-width: 100%; height: auto;"/>
+          <p class="has-text-centered">
+            Point-VLA resolves language limitations in precise target referring across diverse manipulation scenarios.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            Across six referent-sensitive manipulation tasks, Point-VLA achieves <strong>92.5% average success</strong>, with +60.1 and +52.5 point improvements over text-only and Interleave-VLA baselines respectively.
+          </p>
+        </div>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/fig5_task_overview-1.png" alt="Task Overview" style="max-width: 100%; height: auto;"/>
+          <p class="has-text-centered">
+            <strong>Evaluation Tasks:</strong> Six real-world manipulation tasks including irregular object picking, OOD object picking, cluttered scenario picking, egg-slot picking, plain placement, and egg-slot placement.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Performance Comparison</h3>
+        <div class="content">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Irregular Object</th>
+                <th>OOD Object</th>
+                <th>Clutter Scenario</th>
+                <th>Egg from Slot</th>
+                <th>Plain Tabletop</th>
+                <th>Egg into Slot</th>
+                <th>Average</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Text VLA</td>
+                <td>30.0</td>
+                <td>57.5</td>
+                <td>43.3</td>
+                <td>10.0</td>
+                <td>30.0</td>
+                <td>23.3</td>
+                <td>32.4</td>
+              </tr>
+              <tr>
+                <td>Interleave-VLA</td>
+                <td>60.0</td>
+                <td>86.7</td>
+                <td>33.3</td>
+                <td>13.3</td>
+                <td>26.7</td>
+                <td>20.0</td>
+                <td>40.0</td>
+              </tr>
+              <tr style="background-color: #e8f5e9;">
+                <td><strong>Point-VLA (ours)</strong></td>
+                <td><strong>96.7</strong></td>
+                <td><strong>92.5</strong></td>
+                <td><strong>94.3</strong></td>
+                <td><strong>86.7</strong></td>
+                <td><strong>95.0</strong></td>
+                <td><strong>90.0</strong></td>
+                <td><strong>92.5</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-centered">
+          <img src="./static/images/fig2_vlm2vla_gap-1.png" alt="VLM to VLA Gap" style="max-width: 100%; height: auto;"/>
+          <p class="has-text-centered">
+            <strong>VLM Localization vs VLA Execution Gap:</strong> Even when VLMs can localize targets with 60-70% accuracy, text-only VLAs achieve only 25% manipulation success, revealing a fundamental language-action alignment gap that Point-VLA addresses.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Text Compatibility & Data Scaling</h3>
+        <div class="columns">
+          <div class="column">
+            <img src="./static/images/fig6_text_compatible-1.png" alt="Text Compatibility" style="max-width: 100%; height: auto;"/>
+            <p class="has-text-centered">Point-VLA maintains compatibility with text-only instructions.</p>
+          </div>
+          <div class="column">
+            <img src="./static/images/fig7_scaling-1.png" alt="Data Scaling" style="max-width: 100%; height: auto;"/>
+            <p class="has-text-centered">Point-VLA continues to benefit from increased training data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{yu2024point,
+  title={Point What You Mean: Visually Grounded Instruction Policy},
+  author={Yu, Hang and Zhao, Juntu and Liu, Yufeng and Li, Kaiyu and Ma, Cheng and Zhang, Di and Hu, Yingdong and Chen, Guang and Xie, Junyuan and Guo, Junliang and Zhao, Junqiao and Gao, Yang},
+  journal={arXiv preprint arXiv:2512.18933},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
